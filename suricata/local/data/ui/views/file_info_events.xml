@@ -1,0 +1,37 @@
+<dashboard>
+  <label>File Info Events</label>
+  <description>File info events in the last 24hours</description>
+  <row>
+    <panel>
+      <table>
+        <title>File_Events-Last_24hours</title>
+        <searchString>sourcetype=suricata:json event_type=fileinfo earliest=@d latest=now | stats count by event_type</searchString>
+
+      </table>
+    </panel>
+    <panel>
+      <chart>
+        <title>File State - Last 24 hours</title>
+        <searchString>sourcetype=suricata:json event_type=fileinfo earliest=@d latest=now | stats count by fileinfo.state</searchString>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

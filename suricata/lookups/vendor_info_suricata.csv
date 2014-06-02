@@ -1,0 +1,4 @@
+sourcetype,vendor,product,ids_type
+suricata:json,suricata,IDS,network
+suricata:fast,suricata,IDS,network
+suricata:stats,suricata,IDS,network

@@ -1,0 +1,52 @@
+<form>
+  <label>Suricata Stats.log Filter</label>
+  <description>Events Filtered by Name and Kernel Level label</description>
+  <fieldset autoRun="true" submitButton="false">
+    <input type="dropdown" token="host" searchWhenChanged="true">
+      <label>Select a Host Source:</label>
+      <default>*</default>
+      <choice value="*">All</choice>
+      <populatingSearch fieldForValue="host" fieldForLabel="host" earliest="-24h" latest="now">
+        <![CDATA[sourcetype=suricata:stats | stats count by host]]>
+      </populatingSearch>
+    </input>
+    <input type="dropdown" token="TM.Name" searchWhenChanged="true">
+      <label>Select a Kernel Device Source:</label>
+      <default>*</default>
+      <choice value="*">All</choice>
+      <populatingSearch fieldForValue="TMName" fieldForLabel="TMName" earliest="-24h" latest="now">
+        <![CDATA[sourcetype=suricata:stats | stats count by TM.Name | rename TM.Name as TMName | eval count=if(TMName=="TM Name",0,count) | where count > 0]]>
+      </populatingSearch>
+    </input>
+    <input type="dropdown" token="Counter" searchWhenChanged="true">
+      <label>Select a Counter:</label>
+      <prefix>Counter="</prefix>
+      <suffix>"</suffix>
+      <default>*</default>
+      <choice value="*">All</choice>
+      <populatingSearch fieldForValue="Counter" fieldForLabel="Counter" earliest="-24h" latest="now">
+        <![CDATA[sourcetype=suricata:stats | stats count by Counter |  eval count=if(Counter=="Counter",0,count) | where count > 10]]>
+      </populatingSearch>
+    </input>
+  </fieldset>
+  <row>
+    <chart>
+      <title>Chart of Events for Host="$host$", Source="$TM.Name$", and $Counter$</title>
+      <searchString>sourcetype=suricata:stats host=$host$ "TM Name"=$TM.Name$ $Counter$ | timechart count</searchString>
+      <earliestTime>-24h@h</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="charting.chart">column</option>
+    </chart>
+    <table>
+      <title>Table of Events for Host="$host$", Source="$TM.Name$", and $Counter$</title>
+      <searchString>sourcetype=suricata:stats host=$host$ "TM Name"=$TM.Name$ $Counter$ | table _time,host, "TM Name", Counter,Value, _raw</searchString>
+      <earliestTime>-24h@h</earliestTime>
+      <latestTime>now</latestTime>
+      <option name="wrap">true</option>
+      <option name="displayRowNumbers">true</option>
+      <option name="dataOverlayMode">none</option>
+      <option name="drilldown">row</option>
+      <option name="count">5</option>
+    </table>
+  </row>
+</form>

@@ -1,0 +1,60 @@
+<dashboard>
+  <label>Suricata - Protocols within the last 60 Minutes</label>
+  <description>Suricata Protocol</description>
+  <row>
+    <map>
+      <title>Global Map</title>
+      <searchString>sourcetype=suricata:json earliest=-1h@h latest=now | iplocation dest_ip | geostats count by City</searchString>
+      <earliestTime>$earliest$</earliestTime>
+      <latestTime>$latest$</latestTime>
+      <option name="mapping.data.maxClusters">500</option>
+      <option name="mapping.markerLayer.markerMaxSize">20</option>
+      <option name="mapping.map.center">(35.6895,139.6917)</option>
+      <option name="mapping.seriesColors">[0x0060DD]</option>
+      <option name="mapping.map.zoom">2</option>
+      <option name="mapping.markerLayer.markerMinSize">10</option>
+      <option name="mapping.markerLayer.markerOpacity">0.8</option>
+      <option name="mapping.tileLayer.maxZoom">7</option>
+      <option name="mapping.tileLayer.minZoom">0</option>
+      <option name="drilldown">all</option>
+    </map>
+  </row>
+  <row>
+    <chart>
+      <title>Protocol's in last 60 Minutes</title>
+      <searchString>sourcetype=suricata:json earliest=-1h@h latest=now| timechart span=5m count by proto</searchString>
+      <earliestTime>$earliest$</earliestTime>
+      <latestTime>$latest$</latestTime>
+      <option name="charting.axisTitleX.visibility">visible</option>
+      <option name="charting.axisTitleY.visibility">visible</option>
+      <option name="charting.axisX.scale">linear</option>
+      <option name="charting.axisY.scale">linear</option>
+      <option name="charting.chart">area</option>
+      <option name="charting.chart.nullValueMode">gaps</option>
+      <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+      <option name="charting.chart.stackMode">default</option>
+      <option name="charting.chart.style">shiny</option>
+      <option name="charting.drilldown">all</option>
+      <option name="charting.layout.splitSeries">0</option>
+      <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+      <option name="charting.legend.placement">right</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+      <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+      <option name="charting.axisTitleY2.visibility">visible</option>
+      <option name="charting.axisY2.enabled">false</option>
+      <option name="charting.axisY2.scale">inherit</option>
+      <option name="charting.axisTitleX.text">Time</option>
+    </chart>
+    <table>
+      <title>Interesting Ports in last 60 Minutes</title>
+      <searchString>sourcetype=suricata:json earliest=-1h@h latest=now | where dest_port &lt; 1025 |  chart values(proto) as Protocol sparkline count by dest_port | rename dest_port as "Destination Port", sparkline as "Sparkline" | fields - count</searchString>
+      <earliestTime>0</earliestTime>
+      <latestTime/>
+      <option name="wrap">true</option>
+      <option name="rowNumbers">false</option>
+      <option name="dataOverlayMode">none</option>
+      <option name="drilldown">cell</option>
+      <option name="count">10</option>
+    </table>
+  </row>
+</dashboard>

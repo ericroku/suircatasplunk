@@ -1,0 +1,107 @@
+<dashboard>
+  <label>Alerts</label>
+  <description>Alert Signatures</description>
+  <row>
+    <panel>
+      <chart>
+        <title>Alert Severity</title>
+        <searchString>sourcetype=suricata:json earliest=@d latest=now  | stats count by alert.status</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">none</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Action Allowed by Source and Country</title>
+        <searchString>sourcetype=suricata:json event_type=alert alert.action=allowed OR alert.action=ALLOWED | iplocation src_ip | stats count by Country</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+    <panel>
+      <table>
+        <title>Suricata Alert Action Type</title>
+        <searchString>sourcetype=suricata:json  eventtype="suricata-alert"  | stats count sparkline by alert.status, alert.action | table alert.action,alert.status,sparkline | rename alert.action AS "Action", alert.status as "Severity" | fields - count</searchString>
+        <earliestTime>-24h@h</earliestTime>
+        <latestTime>now</latestTime>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">true</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="count">5</option>
+        <format type="sparkline" field="sparkline">
+          <option name="lineColor">#5379af</option>
+          <option name="fillColor">#CCDDFF</option>
+          <option name="lineWidth">1</option>
+          <option name="maxSpotColor">#A2FFA2</option>
+          <option name="spotRadius">3</option>
+          <option name="height">25px</option>
+        </format>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Alert Signatures</title>
+        <searchString>sourcetype=suricata:json event_type=alert | iplocation src_ip | stats count by alert.status,alert.action,alert.category,alert.signature,Country | rename alert.status as "Severity" alert.action as Action, alert.category AS "Suricata Alert Category", alert.signature as "Suricata Signature" | sort 10 -count</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="wrap">false</option>
+        <option name="rowNumbers">true</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="count">10</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Event Count by Hosts</title>
+        <searchString>sourcetype=suricata:json | stats count by host</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

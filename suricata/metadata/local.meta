@@ -1,0 +1,180 @@
+[app/ui]
+owner = admin
+version = 6.1.1
+modtime = 1399956184.768874000
+
+[app/launcher]
+owner = admin
+version = 6.1.1
+modtime = 1399956184.770499000
+
+[app/package/check_for_updates]
+version = 6.1.1
+modtime = 1399956184.771281000
+
+[app/install/state]
+version = 6.1.1
+modtime = 1399956193.472425000
+
+[props/suricata%3Astats/FIELDALIAS-tmname]
+version = 6.1.1
+modtime = 1399956208.181701000
+
+[]
+access = read : [ * ], write : [ * ]
+export = system
+version = 6.1.1
+modtime = 1399956732.110875000
+
+[views/global_events]
+version = 6.1.1
+modtime = 1400917689.559302000
+
+[views/file_info_events]
+version = 6.1.1
+modtime = 1400050029.920868000
+
+[views/suricata_protocol_breakout]
+version = 6.1.1
+modtime = 1399963355.574170000
+
+[views/suricatadnslast_24_hours]
+version = 6.1.1
+modtime = 1399963821.969011000
+
+[views/http_events]
+owner = admin
+version = 6.1.1
+modtime = 1399971474.683593000
+
+[views/ssh_events]
+owner = admin
+version = 6.1.1
+modtime = 1399964687.846383000
+
+[views/suricata__statslog_overview]
+version = 6.1.1
+modtime = 1400052451.770058000
+
+[lookups/http_status_codes.csv]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1399970318.789776000
+
+[views/tls_events]
+owner = admin
+version = 6.1.1
+modtime = 1400129728.761496000
+
+[views/alerts]
+owner = admin
+version = 6.1.1
+modtime = 1401716979.804661000
+
+[views/alert_search]
+owner = admin
+version = 6.1.1
+modtime = 1400817482.518153000
+
+[eventtypes/Alert]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1400818690.425810000
+
+[tags/eventtype%3DAlert]
+owner = admin
+version = 6.1.1
+modtime = 1400818690.428434000
+
+[views/events_summary_]
+owner = admin
+version = 6.1.1
+modtime = 1400917446.518203000
+
+[lookups/vendor_info_suricata.csv]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401712768.166441000
+
+[lookups/sensor_instance_mapping.csv]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401712841.225207000
+
+[lookups/severity_lookup_for_suricata.csv]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401712883.545639000
+
+[lookups/suricata_signature_lookup.csv]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401712965.208644000
+
+[transforms/http_status_lookup]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401713035.053811000
+
+[transforms/sensor_instance_mapping]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401713046.982613000
+
+[transforms/severity_mapping]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401713189.740323000
+
+[transforms/suricata_signature]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401713234.236221000
+
+[transforms/vendor_info]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401713328.918539000
+
+[props/suricata%3Ajson/LOOKUP-http_code_status]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401714772.726055000
+
+[props/suricata%3Ajson/LOOKUP-severity_mapping]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401714841.244344000
+
+[props/suricata%3Ajson/LOOKUP-vendor_info]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401717311.277371000

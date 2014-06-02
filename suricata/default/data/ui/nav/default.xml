@@ -1,0 +1,25 @@
+<nav>
+  <collection label="Overview">
+    <view name="global_events" />
+    <view name="search" />
+  </collection>
+  <collection label="SSH Events">
+    <view name="ssh_events" />
+  </collection>
+<collection label="File Events">
+    <view name="file_info_events" />
+  </collection>
+<collection label="HTTP Events">
+    <view name="http_events" />
+  </collection>
+<collection label="TLS Events">
+    <view name="tls_events" />
+  </collection>
+  <collection label="Suricata">
+    <view name="mysearchview" />
+    <a href="http://suricata-ids.org/">Suricata Project</a>
+  </collection>
+  <collection label="Others">
+    <view source="unclassified" />
+  </collection>
+</nav>

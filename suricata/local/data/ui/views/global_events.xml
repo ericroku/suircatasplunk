@@ -1,0 +1,194 @@
+<dashboard script="single_trend.js" stylesheet="single_trend.css">
+  <label>Suricata - Global Events in the Last 24 Hours</label>
+  <description>Events Occuring Globally</description>
+  <row>
+    <panel>
+      <html>
+      <h1>Suricata IDS / IPS  Global Events</h1>
+      <p>This app utilizes Suricata's new JSON logging feature and accelerated datamodels in Splunk &gt; 6.</p>
+      <p>All searches are based on a sourcetype of<b>
+          <i>suricata:json</i>
+        </b>.</p>
+    </html>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <single>
+        <title>Daily Events</title>
+        <searchString>sourcetype=suricata:json earliest=-2d@d latest=-1d@d   
+| stats count by event_type   
+| stats count   
+| eval msg = if(count == 0,0,count)    
+| eval PrevDayEventTotal=(case(msg == 0,0, msg &gt; 0, [search sourcetype=suricata:json earliest=-2d@d latest=-1d@d    
+| stats count by event_type   
+| stats sum(count) as TotalC  
+ | rename TotalC as search]))    
+| eval TodayEventTotal=[search sourcetype=suricata:json earliest=@d latest=now    
+| stats count by event_type    
+| stats sum(count) as DayTotal   
+ | rename DayTotal as search]    
+| eval DayDiff=(TodayEventTotal-PrevDayEventTotal)</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="field">TodayEventTotal</option>
+        <option name="changeField">DayDiff</option>
+        <option name="changeFieldType">trend</option>
+        <option name="linkView">search</option>
+        <option name="drilldown">none</option>
+        <option name="afterLabel">Events Today</option>
+        <option name="underLabel">Change from Previous Day</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>30 minute Real Time Event</title>
+        <searchString>index=_internal | eval cur=if(_time&gt;relative_time(now(),"-15m"),1,0) | stats count by cur | sort -cur</searchString>
+        <earliestTime>rt-30m</earliestTime>
+        <latestTime>rt</latestTime>
+        <option name="field">count</option>
+        <option name="changeField">change</option>
+        <option name="changeFieldType">percent</option>
+        <option name="linkView">search</option>
+        <option name="drilldown">none</option>
+        <option name="afterLabel">Events</option>
+        <option name="underLabel">Change</option>
+      </single>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <map>
+        <title>Top Destination Countries Today</title>
+        <searchString>sourcetype="suricata:json" earliest=@d latest=now | iplocation dest_ip | geostats count by City</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="mapping.data.maxClusters">500</option>
+        <option name="mapping.markerLayer.markerMaxSize">20</option>
+        <option name="mapping.map.center">(35.6895,139.6917)</option>
+        <option name="mapping.seriesColors">[0x0060DD]</option>
+        <option name="mapping.map.zoom">1</option>
+        <option name="mapping.markerLayer.markerMinSize">10</option>
+        <option name="mapping.markerLayer.markerOpacity">0.8</option>
+        <option name="mapping.tileLayer.maxZoom">7</option>
+        <option name="mapping.tileLayer.minZoom">0</option>
+        <option name="drilldown">all</option>
+      </map>
+    </panel>
+    <panel>
+      <chart>
+        <title>Events by Hosts</title>
+        <searchString>sourcetype=suricata:json earliest=@d latest=now | chart count by host,event_type</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">bar</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">stacked</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+    <panel>
+      <chart>
+        <title>Suricata-Destination-Top10_Countries</title>
+        <searchString>sourcetype=suricata:json earliest=@d latest=now | iplocation dest_ip | stats count by Country | sort - count limit=10</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+      </chart>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <chart>
+        <title>Suricata-Source-Top10_Country</title>
+        <searchString>sourcetype=suricata:json earliest=@d latest=now | iplocation src_ip | stats count by Country | sort - count limit=10</searchString>
+        <earliestTime>-24h@h</earliestTime>
+        <latestTime>now</latestTime>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisY2.enabled">false</option>
+        <option name="charting.axisY2.scale">inherit</option>
+      </chart>
+    </panel>
+    <panel>
+      <single>
+        <searchString>| stats count as value | eval value = "some value" | eval change="custom change" | eval trend = "increase"</searchString>
+        <option name="field">value</option>
+        <!-- Define custom settings for the trend visualization -->
+        <option name="changeField">change</option>
+        <option name="trendClassField">trend</option>
+      </single>
+    </panel>
+    <panel>
+      <chart>
+        <title>HTTP User Agents - Last 24 hours</title>
+        <searchString>sourcetype=suricata:json earliest=-1d latest=now | stats count by http.http_user_agent | rename http.http_user_agent as "HTTP User Agent"</searchString>
+        <earliestTime>@d</earliestTime>
+        <latestTime>now</latestTime>
+        <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
+        <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
+        <option name="charting.axisTitleX.visibility">visible</option>
+        <option name="charting.axisTitleY.visibility">visible</option>
+        <option name="charting.axisTitleY2.visibility">visible</option>
+        <option name="charting.axisX.scale">linear</option>
+        <option name="charting.axisY.scale">linear</option>
+        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.scale">inherit</option>
+        <option name="charting.chart">pie</option>
+        <option name="charting.chart.nullValueMode">gaps</option>
+        <option name="charting.chart.sliceCollapsingThreshold">0.01</option>
+        <option name="charting.chart.stackMode">default</option>
+        <option name="charting.chart.style">shiny</option>
+        <option name="charting.drilldown">all</option>
+        <option name="charting.layout.splitSeries">0</option>
+        <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
+        <option name="charting.legend.placement">right</option>
+      </chart>
+    </panel>
+  </row>
+</dashboard>

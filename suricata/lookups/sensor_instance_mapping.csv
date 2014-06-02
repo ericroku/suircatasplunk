@@ -1,0 +1,5 @@
+host,dvc,suricata_instance,suricata_instance_description
+eisonms01,eisonms01-span,span,Span
+eisonms01,eisonms01-dmz,dmz,DMZ
+localhost,splunklocalhost,dmz,Test machine
+remote1,remote1,dmz,Test machine
