@@ -1,0 +1,44 @@
+<dashboard>
+  <label>DNS Events</label>
+  <description>Suricata Alerts for DNS in the last 24hours</description>
+  <row>
+    <panel>
+      <table>
+        <title>DNS Query Types - Last 24h</title>
+        <searchString>sourcetype=suricata:json event_type=dns earliest=-24h@h latest=now| chart count sparkline(count,1h) as trend by dns.type | rename dns.type as "DNS Event Type", count as "Event Count", trend as "Sparkline" | table "DNS Event Type","Sparkline","Event Count"</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">true</option>
+        <option name="dataOverlayMode">heatmap</option>
+        <option name="drilldown">row</option>
+        <option name="count">10</option>
+      </table>
+    </panel>
+  </row>
+  <row>
+    <panel>
+      <table>
+        <title>Top Host Name Lookups</title>
+        <searchString>sourcetype=suricata:json event_type=dns "dns.type"=* earliest=-24h@h latest=now | chart count sparkline(count,1h) as trend by dns.rrname | sort - count| fields - count</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <format type="sparkline" field="trend">
+          <option name="type">bar</option>
+          <option name="height">25px</option>
+          <!-- Use colorMap to map specific values to selected colors -->
+          <option name="colorMap">
+            <option name="2000:">#5379AF</option>
+            <option name=":1999">#9ac23c</option>
+          </option>
+          <option name="barWidth">5px</option>
+        </format>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="count">10</option>
+      </table>
+    </panel>
+  </row>
+</dashboard>

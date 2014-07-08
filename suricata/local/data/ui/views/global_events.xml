@@ -16,19 +16,7 @@
     <panel>
       <single>
         <title>Daily Events</title>
-        <searchString>sourcetype=suricata:json earliest=-2d@d latest=-1d@d   
-| stats count by event_type   
-| stats count   
-| eval msg = if(count == 0,0,count)    
-| eval PrevDayEventTotal=(case(msg == 0,0, msg &gt; 0, [search sourcetype=suricata:json earliest=-2d@d latest=-1d@d    
-| stats count by event_type   
-| stats sum(count) as TotalC  
- | rename TotalC as search]))    
-| eval TodayEventTotal=[search sourcetype=suricata:json earliest=@d latest=now    
-| stats count by event_type    
-| stats sum(count) as DayTotal   
- | rename DayTotal as search]    
-| eval DayDiff=(TodayEventTotal-PrevDayEventTotal)</searchString>
+        <searchString>sourcetype=suricata:json earliest=-2d@d latest=-1d@d    | stats count by event_type    | stats count    | eval msg = if(count == 0,0,count)     | eval PrevDayEventTotal=(case(msg == 0,0, msg &gt; 0, [search sourcetype=suricata:json earliest=-2d@d latest=-1d@d     | stats count by event_type    | stats sum(count) as TotalC    | rename TotalC as search]))     | eval TodayEventTotal=[search sourcetype=suricata:json earliest=@d latest=now     | stats count by event_type     | stats sum(count) as DayTotal     | rename DayTotal as search]     | eval DayDiff=(TodayEventTotal-PrevDayEventTotal)</searchString>
         <earliestTime>0</earliestTime>
         <latestTime/>
         <option name="field">TodayEventTotal</option>
@@ -38,6 +26,33 @@
         <option name="drilldown">none</option>
         <option name="afterLabel">Events Today</option>
         <option name="underLabel">Change from Previous Day</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>TLS Events</title>
+        <searchString>| pivot suricataalert suricataevents count(suricataevents) AS count SPLITROW event_type AS event_type FILTER event_type is tls SORT 100 event_type ROWSUMMARY 0 COLSUMMARY 0 NUMCOLS 0 SHOWOTHER 1</searchString>
+        <earliestTime>-2d@d</earliestTime>
+        <latestTime>now</latestTime>
+        <option name="field">count</option>
+        <option name="changeField">DayDiff</option>
+        <option name="changeFieldType">trend</option>
+        <option name="linkView">search</option>
+        <option name="drilldown">none</option>
+        <option name="afterLabel">Events Today</option>
+        <option name="underLabel">Change from Previous Day</option>
+      </single>
+    </panel>
+    <panel>
+      <single>
+        <title>HTTP Events Today</title>
+        <searchString>| pivot suricataalert Event_typehttp count(Event_typehttp) AS "Count of Event_type-http" ROWSUMMARY 0 COLSUMMARY 0 NUMCOLS 0 SHOWOTHER 1</searchString>
+        <earliestTime>@d</earliestTime>
+        <latestTime>now</latestTime>
+        <option name="drilldown">none</option>
+        <option name="afterLabel">Events Today</option>
+        <option name="underLabel">CHANGE FROM PREVIOUS DAY</option>
+        <option name="linkView">search</option>
       </single>
     </panel>
     <panel>
@@ -153,16 +168,10 @@
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisY2.enabled">false</option>
         <option name="charting.axisY2.scale">inherit</option>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
       </chart>
-    </panel>
-    <panel>
-      <single>
-        <searchString>| stats count as value | eval value = "some value" | eval change="custom change" | eval trend = "increase"</searchString>
-        <option name="field">value</option>
-        <!-- Define custom settings for the trend visualization -->
-        <option name="changeField">change</option>
-        <option name="trendClassField">trend</option>
-      </single>
     </panel>
     <panel>
       <chart>
@@ -189,6 +198,15 @@
         <option name="charting.legend.labelStyle.overflowMode">ellipsisMiddle</option>
         <option name="charting.legend.placement">right</option>
       </chart>
+    </panel>
+    <panel>
+      <single>
+        <searchString>| stats count as value | eval value = "some value" | eval change="custom change" | eval trend = "increase"</searchString>
+        <option name="field">value</option>
+        <!-- Define custom settings for the trend visualization -->
+        <option name="changeField">change</option>
+        <option name="trendClassField">trend</option>
+      </single>
     </panel>
   </row>
 </dashboard>

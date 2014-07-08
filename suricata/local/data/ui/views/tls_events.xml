@@ -1,11 +1,11 @@
 <dashboard>
   <label>TLS Events</label>
-  <description>TLS Events in the Last Day</description>
+  <description>TLS Events in the last 24 hours.</description>
   <row>
     <panel>
       <table>
         <title>TLS Version Count</title>
-        <searchString>sourcetype=suricata:json earliest=@d latest=now   event_type=tls | iplocation dest_ip |  stats count by tls.version,Country | rename tls.version as "TLS Client Side Version"</searchString>
+        <searchString>sourcetype=suricata:json earliest=-24h@h latest=now   event_type=tls | iplocation dest_ip |  stats count by tls.version,Country | rename tls.version as "TLS Client Side Version"</searchString>
         <earliestTime>0</earliestTime>
         <latestTime/>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
@@ -36,7 +36,7 @@
     <panel>
       <table>
         <title>Top Email Addresses</title>
-        <searchString>sourcetype=suricata:json event_type=tls earliest=@d latest=now | stats count by tlsemailaddress | rename tlsemailaddress as "Destination Email Address" | sort - count</searchString>
+        <searchString>sourcetype=suricata:json event_type=tls earliest=-24h@h latest=now | stats count by tlsemailaddress | rename tlsemailaddress as "Destination Email Address" | sort - count</searchString>
         <earliestTime>0</earliestTime>
         <latestTime/>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>

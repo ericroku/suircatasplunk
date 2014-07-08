@@ -4,8 +4,8 @@
   <row>
     <panel>
       <chart>
-        <title>Top Destination IP in last 60 minutes</title>
-        <searchString>sourcetype=suricata:json earliest=-1d latest=now  event_type=ssh | top dest_ip</searchString>
+        <title>Top Destination IP Addresses - Last 24h</title>
+        <searchString>sourcetype=suricata:json earliest=-24h@h latest=now  event_type=ssh | top dest_ip</searchString>
         <earliestTime>1399878012</earliestTime>
         <latestTime>1399964412</latestTime>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
@@ -30,8 +30,8 @@
     </panel>
     <panel>
       <chart>
-        <title>Top Src IP  in last 60 minutes</title>
-        <searchString>sourcetype=suricata:json earliest=-1d latest=now  event_type=ssh | top src_ip</searchString>
+        <title>Top Src IP  - Last 24h</title>
+        <searchString>sourcetype=suricata:json earliest=-24h@h latest=now  event_type=ssh | top src_ip</searchString>
         <earliestTime>1399878012</earliestTime>
         <latestTime>1399964412</latestTime>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>

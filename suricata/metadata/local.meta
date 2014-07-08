@@ -28,11 +28,11 @@ modtime = 1399956732.110875000
 
 [views/global_events]
 version = 6.1.1
-modtime = 1400917689.559302000
+modtime = 1401891174.422075000
 
 [views/file_info_events]
 version = 6.1.1
-modtime = 1400050029.920868000
+modtime = 1404229442.617553000
 
 [views/suricata_protocol_breakout]
 version = 6.1.1
@@ -40,17 +40,17 @@ modtime = 1399963355.574170000
 
 [views/suricatadnslast_24_hours]
 version = 6.1.1
-modtime = 1399963821.969011000
+modtime = 1404228493.800792000
 
 [views/http_events]
 owner = admin
 version = 6.1.1
-modtime = 1399971474.683593000
+modtime = 1404230143.178002000
 
 [views/ssh_events]
 owner = admin
 version = 6.1.1
-modtime = 1399964687.846383000
+modtime = 1404229337.665922000
 
 [views/suricata__statslog_overview]
 version = 6.1.1
@@ -66,12 +66,12 @@ modtime = 1399970318.789776000
 [views/tls_events]
 owner = admin
 version = 6.1.1
-modtime = 1400129728.761496000
+modtime = 1404229697.514034000
 
 [views/alerts]
 owner = admin
 version = 6.1.1
-modtime = 1401716979.804661000
+modtime = 1404229224.806923000
 
 [views/alert_search]
 owner = admin
@@ -93,7 +93,7 @@ modtime = 1400818690.428434000
 [views/events_summary_]
 owner = admin
 version = 6.1.1
-modtime = 1400917446.518203000
+modtime = 1404379927.298719000
 
 [lookups/vendor_info_suricata.csv]
 access = read : [ * ], write : [ admin ]
@@ -178,3 +178,26 @@ export = none
 owner = admin
 version = 6.1.1
 modtime = 1401717311.277371000
+
+[datamodels/suricataalert]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401891394.441267000
+
+[models/suricataalert]
+access = read : [ * ], write : [ admin ]
+export = none
+owner = admin
+version = 6.1.1
+modtime = 1401890880.371246000
+
+[views/historical]
+owner = admin
+version = 6.1.1
+modtime = 1404230388.332557000
+
+[views/dns_events]
+version = 6.1.1
+modtime = 1404229998.818865000

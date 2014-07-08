@@ -1,0 +1,952 @@
+{
+    "modelName": "suricataalert",
+    "displayName": "suricata:alert",
+    "description": "Suricata Alert Data Model",
+    "objectSummary": {
+        "Event-Based": 2,
+        "Transaction-Based": 0,
+        "Search-Based": 3
+    },
+    "objects": [
+        {
+            "objectName": "Suricata_events",
+            "displayName": "Suricata_events",
+            "parentName": "BaseSearch",
+            "fields": [
+                {
+                    "fieldName": "alert.action",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.action",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "alert.status",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.status",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_ip",
+                    "owner": "Suricata_events",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_port",
+                    "owner": "Suricata_events",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dns.type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dns.type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "event_type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "event_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "ids_type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "ids_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_ip",
+                    "owner": "Suricata_events",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_port",
+                    "owner": "Suricata_events",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "vendor",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "vendor",
+                    "comment": "",
+                    "fieldSearch": ""
+                }
+            ],
+            "calculations": [],
+            "constraints": [],
+            "lineage": "Suricata_events",
+            "baseSearch": "sourcetype=suricata:json event_type=*"
+        },
+        {
+            "objectName": "Suricata_SrcIP_Geo",
+            "displayName": "Suricata_SrcIP_Geo",
+            "parentName": "Suricata_events",
+            "fields": [
+                {
+                    "fieldName": "alert.action",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.action",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "alert.status",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.status",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_ip",
+                    "owner": "Suricata_events",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_port",
+                    "owner": "Suricata_events",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dns.type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dns.type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "event_type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "event_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "ids_type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "ids_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_ip",
+                    "owner": "Suricata_events",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_port",
+                    "owner": "Suricata_events",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "vendor",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "vendor",
+                    "comment": "",
+                    "fieldSearch": ""
+                }
+            ],
+            "calculations": [
+                {
+                    "outputFields": [
+                        {
+                            "fieldName": "src_ip_lon",
+                            "owner": "Suricata_events.Suricata_SrcIP_Geo",
+                            "type": "number",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "src_ip_lon",
+                            "comment": "",
+                            "fieldSearch": "src_ip_lon=*",
+                            "lookupOutputFieldName": "lon"
+                        },
+                        {
+                            "fieldName": "src_ip_lat",
+                            "owner": "Suricata_events.Suricata_SrcIP_Geo",
+                            "type": "number",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "src_ip_lat",
+                            "comment": "",
+                            "fieldSearch": "src_ip_lat=*",
+                            "lookupOutputFieldName": "lat"
+                        },
+                        {
+                            "fieldName": "src_ip_City",
+                            "owner": "Suricata_events.Suricata_SrcIP_Geo",
+                            "type": "string",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "src_ip_City",
+                            "comment": "",
+                            "fieldSearch": "src_ip_City=*",
+                            "lookupOutputFieldName": "City"
+                        },
+                        {
+                            "fieldName": "src_ip_Region",
+                            "owner": "Suricata_events.Suricata_SrcIP_Geo",
+                            "type": "string",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "src_ip_Region",
+                            "comment": "",
+                            "fieldSearch": "src_ip_Region=*",
+                            "lookupOutputFieldName": "Region"
+                        },
+                        {
+                            "fieldName": "src_ip_Country",
+                            "owner": "Suricata_events.Suricata_SrcIP_Geo",
+                            "type": "string",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "src_ip_Country",
+                            "comment": "",
+                            "fieldSearch": "src_ip_Country=*",
+                            "lookupOutputFieldName": "Country"
+                        }
+                    ],
+                    "inputField": "src_ip",
+                    "calculationType": "GeoIP",
+                    "comment": "",
+                    "owner": "Suricata_events.Suricata_SrcIP_Geo",
+                    "calculationID": "jzscxor7ipe3ik9",
+                    "editable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "search": "src_ip=*",
+                    "owner": "Suricata_events.Suricata_SrcIP_Geo"
+                }
+            ],
+            "lineage": "Suricata_events.Suricata_SrcIP_Geo",
+            "baseSearch": ""
+        },
+        {
+            "objectName": "Suricata_DestIP_geo",
+            "displayName": "Suricata_DestIP_geo",
+            "parentName": "Suricata_events",
+            "fields": [
+                {
+                    "fieldName": "alert.action",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.action",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "alert.status",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.status",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_ip",
+                    "owner": "Suricata_events",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_port",
+                    "owner": "Suricata_events",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dns.type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dns.type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "event_type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "event_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "ids_type",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "ids_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_ip",
+                    "owner": "Suricata_events",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_port",
+                    "owner": "Suricata_events",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "vendor",
+                    "owner": "Suricata_events",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "vendor",
+                    "comment": "",
+                    "fieldSearch": ""
+                }
+            ],
+            "calculations": [
+                {
+                    "outputFields": [
+                        {
+                            "fieldName": "dest_ip_lon",
+                            "owner": "Suricata_events.Suricata_DestIP_geo",
+                            "type": "number",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "dest_ip_lon",
+                            "comment": "",
+                            "fieldSearch": "dest_ip_lon=*",
+                            "lookupOutputFieldName": "lon"
+                        },
+                        {
+                            "fieldName": "dest_ip_lat",
+                            "owner": "Suricata_events.Suricata_DestIP_geo",
+                            "type": "number",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "dest_ip_lat",
+                            "comment": "",
+                            "fieldSearch": "dest_ip_lat=*",
+                            "lookupOutputFieldName": "lat"
+                        },
+                        {
+                            "fieldName": "dest_ip_City",
+                            "owner": "Suricata_events.Suricata_DestIP_geo",
+                            "type": "string",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "dest_ip_City",
+                            "comment": "",
+                            "fieldSearch": "dest_ip_City=*",
+                            "lookupOutputFieldName": "City"
+                        },
+                        {
+                            "fieldName": "dest_ip_Region",
+                            "owner": "Suricata_events.Suricata_DestIP_geo",
+                            "type": "string",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "dest_ip_Region",
+                            "comment": "",
+                            "fieldSearch": "dest_ip_Region=*",
+                            "lookupOutputFieldName": "Region"
+                        },
+                        {
+                            "fieldName": "dest_ip_Country",
+                            "owner": "Suricata_events.Suricata_DestIP_geo",
+                            "type": "string",
+                            "required": true,
+                            "multivalue": false,
+                            "hidden": false,
+                            "editable": true,
+                            "displayName": "dest_ip_Country",
+                            "comment": "",
+                            "fieldSearch": "dest_ip_Country=*",
+                            "lookupOutputFieldName": "Country"
+                        }
+                    ],
+                    "inputField": "dest_ip",
+                    "calculationType": "GeoIP",
+                    "comment": "",
+                    "owner": "Suricata_events.Suricata_DestIP_geo",
+                    "calculationID": "9fncgxkzqths38fr",
+                    "editable": true
+                }
+            ],
+            "constraints": [
+                {
+                    "search": "dest_ip=*",
+                    "owner": "Suricata_events.Suricata_DestIP_geo"
+                }
+            ],
+            "lineage": "Suricata_events.Suricata_DestIP_geo",
+            "baseSearch": ""
+        },
+        {
+            "objectName": "suricataevents",
+            "displayName": "suricataevents",
+            "parentName": "BaseEvent",
+            "fields": [
+                {
+                    "fieldName": "alert.action",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.action",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "alert.category",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.category",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "alert.status",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.status",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_ip",
+                    "owner": "suricataevents",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_port",
+                    "owner": "suricataevents",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "dest_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "event_type",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "event_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_ip",
+                    "owner": "suricataevents",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_port",
+                    "owner": "suricataevents",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "src_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "timestamp",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "timestamp",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "_time",
+                    "owner": "BaseEvent",
+                    "type": "timestamp",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "_time",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "source",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "source",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "sourcetype",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "sourcetype",
+                    "comment": "",
+                    "fieldSearch": ""
+                }
+            ],
+            "calculations": [],
+            "constraints": [
+                {
+                    "search": "sourcetype=suricata:json event_type=*",
+                    "owner": "suricataevents"
+                }
+            ],
+            "lineage": "suricataevents"
+        },
+        {
+            "objectName": "Event_typehttp",
+            "displayName": "Event_type-http",
+            "parentName": "suricataevents",
+            "fields": [
+                {
+                    "fieldName": "alert.action",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.action",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "alert.category",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.category",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "alert.status",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "alert.status",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_ip",
+                    "owner": "suricataevents",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": true,
+                    "editable": true,
+                    "displayName": "dest_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "dest_port",
+                    "owner": "suricataevents",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": true,
+                    "editable": true,
+                    "displayName": "dest_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "event_type",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "event_type",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_ip",
+                    "owner": "suricataevents",
+                    "type": "ipv4",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": true,
+                    "editable": true,
+                    "displayName": "src_ip",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "src_port",
+                    "owner": "suricataevents",
+                    "type": "number",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": true,
+                    "editable": true,
+                    "displayName": "src_port",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "timestamp",
+                    "owner": "suricataevents",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "timestamp",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "_time",
+                    "owner": "BaseEvent",
+                    "type": "timestamp",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "_time",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "host",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": false,
+                    "editable": true,
+                    "displayName": "host",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "source",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": true,
+                    "editable": true,
+                    "displayName": "source",
+                    "comment": "",
+                    "fieldSearch": ""
+                },
+                {
+                    "fieldName": "sourcetype",
+                    "owner": "BaseEvent",
+                    "type": "string",
+                    "required": false,
+                    "multivalue": false,
+                    "hidden": true,
+                    "editable": true,
+                    "displayName": "sourcetype",
+                    "comment": "",
+                    "fieldSearch": ""
+                }
+            ],
+            "calculations": [],
+            "constraints": [
+                {
+                    "search": "event_type=http",
+                    "owner": "suricataevents.Event_typehttp"
+                }
+            ],
+            "lineage": "suricataevents.Event_typehttp"
+        }
+    ],
+    "objectNameList": [
+        "Suricata_events",
+        "Suricata_SrcIP_Geo",
+        "Suricata_DestIP_geo",
+        "suricataevents",
+        "Event_typehttp"
+    ]
+}

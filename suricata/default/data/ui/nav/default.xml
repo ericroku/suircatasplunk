@@ -1,7 +1,9 @@
 <nav>
   <collection label="Overview">
     <view name="global_events" />
+    <view name="alerts" />
     <view name="search" />
+    <view name="events_summary_" />
   </collection>
   <collection label="SSH Events">
     <view name="ssh_events" />
@@ -15,11 +17,14 @@
 <collection label="TLS Events">
     <view name="tls_events" />
   </collection>
-  <collection label="Suricata">
-    <view name="mysearchview" />
-    <a href="http://suricata-ids.org/">Suricata Project</a>
+<collection label="DNS Events">
+    <view name="dns_events" />
   </collection>
   <collection label="Others">
     <view source="unclassified" />
   </collection>
-</nav>
+  <collection label="Suricata">
+    <view name="mysearchview" />
+    <a href="http://suricata-ids.org/">Suricata Project</a>
+  </collection>
+ </nav>

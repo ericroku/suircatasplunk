@@ -4,15 +4,23 @@
   <row>
     <panel>
       <table>
-        <title>File_Events-Last_24hours</title>
-        <searchString>sourcetype=suricata:json event_type=fileinfo earliest=@d latest=now | stats count by event_type</searchString>
-
+        <title>File Events - Last 24h</title>
+        <searchString>sourcetype=suricata:json event_type=fileinfo earliest=-24h@h latest=now | stats count by event_type | rename event_type AS "File Event Type"</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
+        <option name="wrap">true</option>
+        <option name="rowNumbers">false</option>
+        <option name="dataOverlayMode">none</option>
+        <option name="drilldown">cell</option>
+        <option name="count">10</option>
       </table>
     </panel>
     <panel>
       <chart>
         <title>File State - Last 24 hours</title>
-        <searchString>sourcetype=suricata:json event_type=fileinfo earliest=@d latest=now | stats count by fileinfo.state</searchString>
+        <searchString>sourcetype=suricata:json event_type=fileinfo earliest=-24h@h latest=now | stats count by fileinfo.state</searchString>
+        <earliestTime>0</earliestTime>
+        <latestTime/>
         <option name="charting.axisLabelsX.majorLabelStyle.overflowMode">ellipsisNone</option>
         <option name="charting.axisLabelsX.majorLabelStyle.rotation">0</option>
         <option name="charting.axisTitleX.visibility">visible</option>
@@ -20,7 +28,7 @@
         <option name="charting.axisTitleY2.visibility">visible</option>
         <option name="charting.axisX.scale">linear</option>
         <option name="charting.axisY.scale">linear</option>
-        <option name="charting.axisY2.enabled">0</option>
+        <option name="charting.axisY2.enabled">false</option>
         <option name="charting.axisY2.scale">inherit</option>
         <option name="charting.chart">pie</option>
         <option name="charting.chart.nullValueMode">gaps</option>
